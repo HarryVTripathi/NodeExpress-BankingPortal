@@ -4,8 +4,21 @@
     Profile
 </h1>
 
+
+<!--
+    isplays each detail of the user object 
+    (passed to the view in the next step) 
+    on a new line (wrap each detail in a p element).
+-->
+
 <div>
-    
+    <p><%= user.name %></p>
+    <p><%= user.username %></p>
+    <p><%= user.email %></p>
 </div>
+
+<br>
+
+<a href="/">Back to Account Summary</a>
 
 <%- include('footer') %>
