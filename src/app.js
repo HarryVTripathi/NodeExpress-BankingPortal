@@ -13,6 +13,13 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
+    With the use function add the "express.urlencoded" middleware to app.
+
+    Set the extended option to true.
+*/
+app.use(express.urlencoded({extended: true}));
+
 
 
 const accountData = fs.readFileSync('src/json/accounts.json', {encoding: 'utf-8'});
@@ -28,8 +35,20 @@ app.get('/', (req, res) => res.render('index', {title: 'Account Summary', accoun
 app.get('/savings', (req, res) => res.render('account', {account: accounts.savings}));
 app.get('/checking', (req, res) => res.render('account', {account: accounts.checking}));
 app.get('/credit', (req, res) => res.render('account', {account: accounts.credit}));
-
 app.get('/profile', (req, res) => res.render('profile', {user: users[0]}));
+app.get('/transfer', (req, res) => res.render('transfer'));
+app.post('/transfer', (req, res) => {
+    accounts[req.body.from].balance = accounts[req.body.from].balance - req.body.amount;
+    accounts[req.body.to].balance = parseInt(accounts[req.body.to].balance) - parseInt(req.body.amount);
+
+    const accountsJSON = JSON.stringify(accounts, null, 4);
+    fs.writeFileSync(path.join(__dirname, 'json/accounts.json'), accountsJSON, 'utf8');
+    res.render('transfer', {message: "Transfer completed"});
+})
+
+
+
+
 
 app.listen(3000, () => {
     console.log('PS project running on port 3000!');
