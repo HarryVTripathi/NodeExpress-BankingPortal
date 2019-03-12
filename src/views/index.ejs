@@ -12,6 +12,16 @@
 
 </div>
 
+<!--
+    Added the ejs markup to include the summary 
+    view for each account in the accounts 
+    variable: savings, checking, and credit.
+-->
+
+<%- include('summary', {account: accounts.savings}) %>
+<%- include('summary', {account: accounts.checking}) %>
+<%- include('summary', {account: accounts.credit}) %>
+
 <br>
 
 <a href="/transfer">Transfer</a>
