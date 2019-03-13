@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const {accounts, users, writeJSON} = require('./data');
+const accountRoutes = require('./routes/accounts');
+const serviceRoutes = require('./routes/service');
 
 const app = express();
 
@@ -24,9 +26,11 @@ app.use(express.urlencoded({extended: true}));
 //  render the view that we defined in index.ejs file
 app.get('/', (req, res) => res.render('index', {title: 'Account Summary', accounts: accounts}));
 
+/*
 app.get('/savings', (req, res) => res.render('account', {account: accounts.savings}));
 app.get('/checking', (req, res) => res.render('account', {account: accounts.checking}));
 app.get('/credit', (req, res) => res.render('account', {account: accounts.credit}));
+
 app.get('/profile', (req, res) => res.render('profile', {user: users[0]}));
 app.get('/transfer', (req, res) => res.render('transfer'));
 app.get('/payment', (req, res) => res.render('payment', {account: accounts.credit}));
@@ -46,6 +50,7 @@ app.post('/payment', (req, res) => {
 
     res.render('payment', { message: "Payment Successful", account: accounts.credit })
 })
+*/
 
 
 
