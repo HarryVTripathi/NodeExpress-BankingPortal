@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const data = require('data');
 
 const accountData = fs.readFileSync('src/json/accounts.json', {encoding: 'utf-8'});
 const accounts = JSON.parse(accountData);
@@ -13,4 +12,4 @@ const writeJSON = () => {
     fs.writeFileSync(path.join(__dirname, 'json/accounts.json'), accountsJSON, 'utf8');
 }
 
-module.exports = {accounts, users, writeJSON};
+module.exports = {accounts: accounts, users: users, writeJSON: writeJSON};
