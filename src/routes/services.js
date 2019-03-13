@@ -3,7 +3,7 @@ const {accounts, users, writeJSON}  = require('../data');
 
 const router = express.Router();
 
-router.get('/profile', (req, res) => res.render('profile', {user: users[0]}));
+
 router.get('/transfer', (req, res) => res.render('transfer'));
 router.get('/payment', (req, res) => res.render('payment', {account: accounts.credit}));
 router.post('/transfer', (req, res) => {
